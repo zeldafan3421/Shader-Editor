@@ -8,6 +8,6 @@ A simple shader viewer for opengl glsl shaders.
 
 ## Credits
   Built using Raylib and Raylib quickstart.
-  www.raylib.com
+  www.raylib.com and
   https://github.com/raylib-extras/raylib-quickstart
 # Shader-Editor
