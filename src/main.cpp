@@ -1,7 +1,7 @@
 #include "raylib.h"
 #include "resource_dir.h"
 
-#include "app.h"
+#include "application.h"
 
 int main()
 {
