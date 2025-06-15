@@ -1,6 +1,7 @@
 #pragma once
 
 #include "raylib.h"
+#include <string>
 
 constexpr int g_WindowWidth = 1280;
 constexpr int g_WindowHeight = 720;
@@ -14,7 +15,10 @@ public:
     WindowManager();
 
     void Update();
+
     Vector2 GetSize() const;
+
+    const std::string GetDroppedFile() const;
 
     ~WindowManager();
 

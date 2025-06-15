@@ -12,6 +12,22 @@ Vector2 WindowManager::GetSize() const
     return m_WindowSize;
 }
 
+const std::string WindowManager::GetDroppedFile() const
+{
+    std::string response;
+    if (IsFileDropped()) 
+    {
+
+        FilePathList droppedFiles = LoadDroppedFiles();
+
+        response = droppedFiles.paths[0];
+
+        UnloadDroppedFiles(droppedFiles);
+    }
+
+    return response;
+}
+
 void WindowManager::Update()
 {
     if (IsWindowResized())
@@ -43,7 +59,6 @@ void WindowManager::Update()
             ClearWindowState(FLAG_WINDOW_UNDECORATED);
         else 
             SetWindowState(FLAG_WINDOW_UNDECORATED);
-
     }
 }
 

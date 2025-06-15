@@ -15,6 +15,13 @@ void Application::Loop()
         m_WindowManager.Update();
         UpdateInput();
 
+        const std::string droppedFile = m_WindowManager.GetDroppedFile();
+
+        if (droppedFile != "")
+        {
+            m_Geometry.LoadCustomModel(droppedFile.c_str());
+        }
+
         BeginDrawing();
             ClearBackground(BLACK);
 
