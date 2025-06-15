@@ -1,8 +1,8 @@
 #pragma once
 
 #include "raylib.h"
-#include "shader_compiler.h"
-#include "geometry.h"
+#include "logic/shader_compiler.h"
+#include "graphics/geometry.h"
 
 class ProjectShaders
 {

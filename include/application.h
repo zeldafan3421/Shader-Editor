@@ -4,7 +4,7 @@
 #include "logic/window_manager.h"
 #include "graphics/preview.h"
 #include "graphics/geometry.h"
-#include "project_shaders.h"
+#include "logic/project_shaders.h"
 
 class Application
 {
