@@ -14,6 +14,8 @@ I plan on eventually expanding this to be an entire editor but I want to have th
   www.raylib.com and
   https://github.com/raylib-extras/raylib-quickstart
 
+  Uses portable file dialogs for systems prompts.
+  https://github.com/samhocevar/portable-file-dialogs
 
 ## Raylib Quickstart License 
 Copyright (c) 2020-2025 Jeffery Myers
