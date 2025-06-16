@@ -13,8 +13,6 @@ public:
     Application();
     void Loop();
 private:
-    
-
     WindowManager m_WindowManager;      
     ProjectShaders m_UserShaders;
     Geometry m_Geometry;
