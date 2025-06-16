@@ -5,6 +5,7 @@ WindowManager::WindowManager()
     SetConfigFlags(FLAG_WINDOW_TOPMOST | FLAG_WINDOW_RESIZABLE);
     InitWindow(g_WindowWidth, g_WindowHeight, g_WindowTitle);  
     m_WindowSize = g_WindowSize; 
+    SetTargetFPS(60);
 }
 
 Vector2 WindowManager::GetSize() const
@@ -59,6 +60,18 @@ void WindowManager::Update()
             ClearWindowState(FLAG_WINDOW_UNDECORATED);
         else 
             SetWindowState(FLAG_WINDOW_UNDECORATED);
+    }
+
+    if (IsKeyPressed(KEY_F2))
+    {
+        if (GetFPS() > 60)
+        {
+            SetTargetFPS(60);
+        }
+        else 
+        {
+            SetTargetFPS(0);
+        }
     }
 }
 

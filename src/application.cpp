@@ -4,6 +4,27 @@ Application::Application()
     : m_WindowManager(), m_UserShaders(),  m_Geometry(), 
     m_Preview(m_Geometry.GetModel(Geometry::Generated::Cube))
 {    
+    using GeometrySetter = std::function<void(Geometry::Generated)>;
+
+    GeometrySetter SetModelActive = [this](Geometry::Generated _gen){
+        this->m_Preview.SetModel(this->m_Geometry.GetModel(_gen));
+    };
+
+    m_InputManager.BindKeyCallback( KEY_ONE, [&SetModelActive](){
+        SetModelActive(Geometry::Generated::Cube);
+    } );
+
+    m_InputManager.BindKeyCallback( KEY_TWO, [&SetModelActive](){
+        SetModelActive(Geometry::Generated::Cone);
+    } );
+
+    m_InputManager.BindKeyCallback( KEY_THREE, [&SetModelActive](){
+        SetModelActive(Geometry::Generated::Sphere);
+    } );
+
+    m_InputManager.BindKeyCallback( KEY_FOUR, [&SetModelActive](){
+        SetModelActive(Geometry::Generated::Custom);
+    } );
 }
 
 void Application::Loop()
@@ -13,10 +34,9 @@ void Application::Loop()
         m_Preview.Update();
         m_UserShaders.Update(m_Geometry);
         m_WindowManager.Update();
-        UpdateInput();
+        m_InputManager.Update();
 
         const std::string droppedFile = m_WindowManager.GetDroppedFile();
-
         if (droppedFile != "")
         {
             m_Geometry.LoadCustomModel(droppedFile.c_str());
@@ -29,19 +49,4 @@ void Application::Loop()
             DrawFPS(10, 10);
         EndDrawing();
     }
-}
-
-void Application::UpdateInput()
-{
-    if (IsKeyPressed(KEY_ONE))
-        m_Preview.SetModel(m_Geometry.GetModel(Geometry::Generated::Cube));
-    
-    if (IsKeyPressed(KEY_TWO))
-        m_Preview.SetModel(m_Geometry.GetModel(Geometry::Generated::Cone));
-    
-    if (IsKeyPressed(KEY_THREE))
-        m_Preview.SetModel(m_Geometry.GetModel(Geometry::Generated::Sphere));
-    
-    if (IsKeyPressed(KEY_FOUR))
-        m_Preview.SetModel(m_Geometry.GetModel(Geometry::Generated::Custom));
 }
