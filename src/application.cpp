@@ -10,21 +10,37 @@ Application::Application()
         this->m_Preview.SetModel(this->m_Geometry.GetModel(_gen));
     };
 
-    m_InputManager.BindKeyCallback( KEY_ONE, [&SetModelActive](){
+    m_InputManager.BindKeyCallback( KEY_ONE, [SetModelActive](){
         SetModelActive(Geometry::Generated::Cube);
     } );
 
-    m_InputManager.BindKeyCallback( KEY_TWO, [&SetModelActive](){
+    m_InputManager.BindKeyCallback( KEY_TWO, [SetModelActive](){
         SetModelActive(Geometry::Generated::Cone);
     } );
 
-    m_InputManager.BindKeyCallback( KEY_THREE, [&SetModelActive](){
+    m_InputManager.BindKeyCallback( KEY_THREE, [SetModelActive](){
         SetModelActive(Geometry::Generated::Sphere);
     } );
 
-    m_InputManager.BindKeyCallback( KEY_FOUR, [&SetModelActive](){
+    m_InputManager.BindKeyCallback( KEY_FOUR, [SetModelActive](){
         SetModelActive(Geometry::Generated::Custom);
     } );
+
+    m_InputManager.BindKeyCallback( KEY_F1, [this](){
+        this->m_WindowManager.ToggleDecoration();
+    });
+
+    using FileListener = WindowManager::FileDefaultListener;
+
+    auto FileDropCallback = [this](){
+        const std::string droppedFile = this->m_WindowManager.GetDroppedFile();
+        if (droppedFile != "")
+        {
+            this->m_Geometry.LoadCustomModel(droppedFile.c_str());
+        } 
+    };
+
+    m_WindowManager.AddListener(std::make_unique<FileListener>(FileDropCallback));
 }
 
 void Application::Loop()
@@ -35,12 +51,6 @@ void Application::Loop()
         m_UserShaders.Update(m_Geometry);
         m_WindowManager.Update();
         m_InputManager.Update();
-
-        const std::string droppedFile = m_WindowManager.GetDroppedFile();
-        if (droppedFile != "")
-        {
-            m_Geometry.LoadCustomModel(droppedFile.c_str());
-        }
 
         BeginDrawing();
             ClearBackground(BLACK);
