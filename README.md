@@ -6,6 +6,23 @@ A simple shader viewer for opengl glsl shaders.
 * Linux
 * MacOS
 
+## Controls 
+F1: toggle window decorations.
+1 : Show cube.
+2 : Show Cone.
+3 : Show Sphere.
+4 : Custom model (added by dropping file into window).
+
+## Features
+1. Auto reloads shaders when the files are modified.
+2. Import Custom models and textures by dropping them into the window.
+
+## Limitations 
+1. Shader files must me in the project directory next to the exe.
+2. Limited support for multipy modelled meshes.
+3. Custom attributes and uniforms not yet supported.
+4. Locked internal rendering resolution. 
+
 ## Ideas 
 I plan on eventually expanding this to be an entire editor but I want to have the viewing functioning well first.
 
@@ -16,29 +33,3 @@ I plan on eventually expanding this to be an entire editor but I want to have th
 
   Uses portable file dialogs for systems prompts.
   https://github.com/samhocevar/portable-file-dialogs
-
-## Raylib Quickstart License 
-Copyright (c) 2020-2025 Jeffery Myers
-
-This software is provided "as-is", without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
-
-Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
-
-    The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
-
-    Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
-
-    This notice may not be removed or altered from any source distribution.
-
-## Raylib License
-Copyright (c) 2013-2025 Ramon Santamaria (@raysan5)
-
-This software is provided "as-is", without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
-
-Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
-
-1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
-
-2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
-
-3. This notice may not be removed or altered from any source distribution.
