@@ -19,6 +19,8 @@ public:
 
     void SetShaders(Shader _shader);
 
+    void SetTexture(Texture _texture);
+
     void LoadCustomModel(const char* _path);
 
     ~Geometry();

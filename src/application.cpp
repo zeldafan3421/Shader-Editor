@@ -32,12 +32,34 @@ Application::Application()
 
     using FileListener = WindowManager::FileDefaultListener;
 
-    auto FileDropCallback = [this](){
-        const std::string droppedFile = this->m_WindowManager.GetDroppedFile();
-        if (droppedFile != "")
+    auto FileIsAny = [](const std::string& _fileName,std::initializer_list<std::string> _args){
+        for (auto& arg : _args)
         {
-            this->m_Geometry.LoadCustomModel(droppedFile.c_str());
-        } 
+            if (IsFileExtension(_fileName.c_str(), arg.c_str()))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    };
+
+    auto IsImageFile = [FileIsAny](const std::string& _fileName){
+        return FileIsAny(_fileName, {".png", ".bmp", ".jpg"});
+    };
+
+    auto FileDropCallback = [this, IsImageFile](){
+        const std::string droppedFile = this->m_WindowManager.GetDroppedFile();
+        if (droppedFile == "") 
+            return;
+
+        if (IsImageFile(droppedFile))
+        {
+            m_Geometry.SetTexture(LoadTexture(droppedFile.c_str()));
+            return;
+        }
+        
+        this->m_Geometry.LoadCustomModel(droppedFile.c_str());
     };
 
     m_WindowManager.AddListener(std::make_unique<FileListener>(FileDropCallback));

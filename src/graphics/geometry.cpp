@@ -38,6 +38,21 @@ void Geometry::SetShaders(Shader _shader)
     }
 }
 
+void Geometry::SetTexture(Texture _texture)
+{
+    if (IsTextureValid(_texture))
+    {
+        m_Cone.materials[0].maps[MATERIAL_MAP_ALBEDO].texture = _texture;
+        m_Cube.materials[0].maps[MATERIAL_MAP_ALBEDO].texture = _texture;
+        m_Sphere.materials[0].maps[MATERIAL_MAP_ALBEDO].texture = _texture;
+
+        if (IsModelValid(m_Custom))
+        {
+            m_Custom.materials[0].maps[MATERIAL_MAP_ALBEDO].texture = _texture;
+        }
+    }
+}
+
 void Geometry::LoadCustomModel(const char *_path)
 {
     if (IsModelValid(m_Custom))

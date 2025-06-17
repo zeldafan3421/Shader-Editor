@@ -17,5 +17,5 @@
         // Texel color fetching from texture sampler
         vec4 texelColor = texture(texture0, fragTexCoord);
         // colorize texture with diffuse color
-        finalColor = vec4(fragTexCoord, 0.0, 1.0);
+        finalColor = colDiffuse*texelColor;
     }
