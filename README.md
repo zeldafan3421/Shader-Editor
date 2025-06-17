@@ -30,6 +30,3 @@ I plan on eventually expanding this to be an entire editor but I want to have th
   Built using Raylib and Raylib quickstart.
   www.raylib.com and
   https://github.com/raylib-extras/raylib-quickstart
-
-  Uses portable file dialogs for systems prompts.
-  https://github.com/samhocevar/portable-file-dialogs
